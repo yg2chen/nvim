@@ -14,4 +14,12 @@ treesitter_context.setup {
     indent = { enable = true, disable = { 'ruby' } },
 }
 
+vim.keymap.set('n', '<leader>tc', function()
+    require('treesitter-context').toggle()
+end, { desc = '[T]oggle [C]ontext' })
+
+vim.keymap.set('n', '[s]', function()
+    require('treesitter-context').go_to_context(vim.v.count1)
+end, { desc = 'Jump to context [s]cope' })
+
 treesitter.install { 'bash', 'c', 'cpp', 'python', 'diff', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'vim', 'vimdoc' }

@@ -67,7 +67,7 @@ vim.opt.wrap = true
 
 vim.opt.background = 'dark'
 
-vim.expandtab = true
+vim.opt.expandtab = true
 
 vim.g.have_nerd_font = true
 

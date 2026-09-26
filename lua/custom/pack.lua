@@ -37,6 +37,8 @@ vim.pack.add {
     { src = 'https://github.com/kylechui/nvim-surround' },
     { src = 'https://github.com/chomosuke/typst-preview.nvim' },
     { src = 'https://github.com/folke/which-key.nvim' },
+    { src = 'https://github.com/sindrets/diffview.nvim' },
+    { src = 'https://github.com/neogitorg/neogit' },
 
     -- neogen
     { src = 'https://github.com/danymat/neogen' },
@@ -49,6 +51,7 @@ vim.pack.add {
 
     -- harpoon
     -- { src = 'https://github.com/theprimeagen/harpoon', version = 'harpoon2' },
+    { src = 'https://github.com/cbochs/grapple.nvim' },
 
     -- zen mode
     -- { src = 'https://github.com/folke/zen-mode.nvim' },
@@ -63,6 +66,9 @@ vim.pack.add {
 
     -- todo
     { src = 'https://github.com/folke/todo-comments.nvim' },
+
+    -- smear cursor
+    { src = 'https://github.com/sphamba/smear-cursor.nvim' },
 }
 
 vim.api.nvim_create_user_command('PackAdd', function(opts)

@@ -94,7 +94,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         --
         -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             -- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             --     buffer = event.buf,
@@ -125,6 +125,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('<leader>th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
         end, '[T]oggle Inlay [H]ints')
+
+        map('<leader>td', function()
+            local config = vim.diagnostic.config() or {}
+            if config.virtual_text ~= false then
+                vim.diagnostic.config { virtual_text = false }
+            else
+                vim.diagnostic.config { virtual_text = true }
+            end
+        end, '[T]oggle Inlay [D]iagnostics')
     end,
 })
 
@@ -195,7 +204,11 @@ require('mason-lspconfig').setup {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            -- require('lspconfig')[server_name].setup(server)
+            vim.lsp.config {
+                server_name,
+                server,
+            }
         end,
     },
 }
